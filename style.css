@@ -1,0 +1,249 @@
+.page-container > div,
+.header > div,
+.body > div,
+.footer > div,
+.body-books > div{
+    border: 2px solid black;
+}
+
+body{
+    margin: 0;
+}
+
+.page-container{
+    display: flex;
+    flex-direction: column;
+}
+
+/*Header*/
+
+.header{
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', monospace;
+    border: none;
+}
+
+.header-text > p:first-child{
+    font-size: 35px;
+    margin: 12px 0 0;
+    font-weight: 900;
+}
+
+.header-text > p:nth-child(2){
+    font-size: 10px;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.header-text{
+    border: none;
+}
+
+
+/*Body*/
+
+.body{
+    display: flex;
+    height: 83vh;
+}
+
+.books-container{
+    display: grid;
+    grid-template-rows: 90fr 10fr ;
+}
+
+.body-books{
+    width: 70vw;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(350px, 400px));
+    grid-auto-rows: repeat(autofit, 350px);
+    gap: 20px;
+    grid-template-rows: unset;
+    margin: 20px;
+    overflow: auto;
+    justify-content: space-around;
+}
+
+.body-books > div{
+    height: 240px;
+    width: 350px;
+    box-sizing: border-box;
+    padding: 0 10px 10px 10px;
+    border-radius: 8px;
+
+}
+
+.body-books > div > p{
+    margin: 12px;
+}
+
+.body-books > div > p:first-child,
+.body-books > div > p:nth-child(7){
+    text-align: end;
+    margin: 1px 4px 4px 4px;
+}
+
+.body-books > div > p:nth-child(2){
+    font-size: 22px;
+}
+
+.body-books > div > p:nth-child(7){
+    font-size: 14px;
+}
+
+.body-books > div > p > button{
+    color: black;
+}
+
+.books-container > button{
+    border-radius: 20px;
+    height: 50px;
+    width: 50px;
+    margin: 15px 20px 0 0;
+}
+
+.button{
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+
+
+
+
+/*Footer*/
+
+.footer{
+    height: 5vh;
+    text-align: center;
+    font-weight: 500;
+    border: none;
+}
+
+.blur{
+    filter: blur(3px);
+}
+
+/*Form Styles*/
+
+.form-popup{
+    width: 450px;
+    height: min-content;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid black;
+    padding-bottom: 20px;
+    background-color: white;
+}
+
+form{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 0 0 40px;
+}
+
+form > div{
+    margin: 20px 200px 2px 0px ;
+    box-sizing: border-box;
+    height: 50px;
+    width: 350px;
+    background-color: beige;
+}
+
+form > div > input, 
+form > div > select{
+    height: 50px;
+    width: 350px;
+    padding: 4px 4px 0 8px;
+}
+
+div > label{
+    position: absolute;
+    transform: translate(10px, -32px);
+    font-size: 12px;
+    font-weight: 10;
+}
+
+::placeholder{
+    color: white
+}
+
+input:focus ~ label,
+input:not(:placeholder-shown):invalid ~ label{
+    transform: translate(6px, -50px);
+    font-size: 10px;
+    color: red;
+}
+
+input[required]:not(:focus):valid ~ label{
+    transform: translate(6px, -50px);
+    font-size: 10px;
+    color: black;
+}
+
+input[required]:not(:focus):valid{
+    border-color: rgb(174, 255, 174);
+}
+
+input:not(:placeholder-shown):invalid{
+    border-color: red;
+}
+
+#date{
+    border: 2px solid #ababab;
+}
+
+h1{
+    text-align: center;
+    color: #000000a6;
+
+}
+
+.form-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.form-header > button {
+    position: relative;
+    left: 90px;
+    top: 18px;
+    height: 20px;
+    border: none;
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+
+.form-buttons{
+    margin: 12px 0 0 63px;
+}
+
+.form-button{
+    width: 150px;
+    height: 35px;
+}
+
+select{
+    background-color: rgb(237 232 232 / 91%);
+    font-size: 15px;
+}
+
+.hide-popup{
+    display: none;
+}
+
+form > p{
+    color: red;
+    font-size: 14px;
+    display: none;
+}
+
+/*/Form Styles*/

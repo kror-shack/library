@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="javascript.js" defer=""></script>
+    <title>Library</title>
+</head>
+<body>
+    <div class="container">
+        <div class="page-container">
+            <div class="header">
+                <div class="header-text">
+                    <p>Library</p>
+                    <p>With local Storage</p>
+                </div>
+            </div>
+            <div class="body">
+                <div class="books-container">
+                    <div class="body-books">
+                        <div>
+                            <p><button type="button" class="close-card"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+                            </svg></button></p>
+                            <p>A Game of Thrones</p>
+                            <p>By: George R. R. Martin</p>
+                            <p>Number of pages: 694</p>
+                            <p>Langauge: English</p>
+                            <p>Published: July 1 1996</p>
+                            <p>
+                                <label for="read">mark as read</label>
+                                <input type="checkbox" id="read" name="read" value="read">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <button><svg style="width:34px;height:34px" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M2 12C2 9.2 3.6 6.8 6 5.7V3.5C2.5 4.8 0 8.1 0 12S2.5 19.2 6 20.5V18.3C3.6 17.2 2 14.8 2 12M15 3C10 3 6 7 6 12S10 21 15 21 24 17 24 12 20 3 15 3M20 13H16V17H14V13H10V11H14V7H16V11H20V13Z" />
+                        </svg> </button>
+                    </div>
+                </div>
+                <div class="body-catalog"></div>
+            </div>
+            <div class="footer">
+                <p>COPYRIGHT © 2022 KRORSHACK </p>
+            </div>
+        </div>
+        <div class="form-popup hide-popup">
+            <div class="form-header">
+                <h1>Add a new Book</h1>
+                <button id="close-popup"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+                </svg></button>
+            </div>
+            <div class="form">
+                <form id="form" action="" method="post" onsubmit="return false">
+                    <div class="name">
+                        <input type="text" id="book_name" maxlength="35" placeholder="Name *" required >
+                        <label for="book_name">Name * </label>
+                    </div>
+                    <div class="author">
+                        <input type="text" id="author" maxlength="35" placeholder="Author *" >
+                        <label for="author">Author * </label>
+                    </div>
+                    <div class="pages">
+                        <input type="number" id="pages" maxlength="35" placeholder="Number of Pages *">
+                        <label for="pages">Number of Pages * </label>
+                    </div>
+                    <div class="langauge">
+                        <input type="text" id="language" maxlength="35" placeholder="langauge *" pattern="[a-zA-Z]+" >
+                        <label for="langauge">Langauge * </label>
+                    </div>
+                    <div class="date">
+                        <input type="date" id="date">
+                        <!-- <label for="date">Publishing Date * </label> -->
+                    </div>
+                    <div class="status">
+                        <select name="status" id="status">
+                            <option value="none" selected>Did you read this book?</option>
+                            <option value="read">I have read it.</option>
+                            <option value="unread">I have not read it.</option>
+                        </select>
+                    </div>
+                    <p id="error">This feild is required!</p>
+                </div>
+            <div class="form-buttons">
+                <button type="submit" class="form-button" id="add-book">Add Book</button>
+                <button type="reset" class="form-button">Clear Feilds</button>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
