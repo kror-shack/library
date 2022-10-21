@@ -1,9 +1,7 @@
 .page-container > div,
-.header > div,
 .body > div,
-.footer > div,
 .body-books > div{
-    border: 2px solid black;
+    border: 1px solid rgb(88, 158, 190);
 }
 
 body{
@@ -24,6 +22,7 @@ body{
     align-items: center;
     font-family: 'Courier New', monospace;
     border: none;
+    /* background-image: linear-gradient(183deg, #e2d4e7 0, #00c7e7bd 100%);} */
 }
 
 .header-text > p:first-child{
@@ -47,7 +46,8 @@ body{
 
 .body{
     display: flex;
-    height: 83vh;
+    height: 84vh;
+    /* background-image: linear-gradient(316deg, #e2d4e7 0, #87b9c1bd 100%); */
 }
 
 .books-container{
@@ -68,11 +68,12 @@ body{
 }
 
 .body-books > div{
-    height: 240px;
+    height: 260px;
     width: 350px;
     box-sizing: border-box;
     padding: 0 10px 10px 10px;
-    border-radius: 8px;
+    border-radius: 12px;
+    box-shadow: #4f8f8f;
 
 }
 
@@ -94,8 +95,12 @@ body{
     font-size: 14px;
 }
 
-.body-books > div > p > button{
+.close-card{
     color: black;
+    border: none;
+    background: none;
+    margin: 0;
+    padding: 0;
 }
 
 .books-container > button{
@@ -108,6 +113,15 @@ body{
 .button{
     display: flex;
     justify-content: flex-end;
+    padding: 0 10px 10px 0;
+}
+
+.books-read{
+    background-image: linear-gradient(316deg, #8cefa2 0, #53c3ae 100%);
+}
+
+.books-unread{
+    background-image: linear-gradient(316deg, #dbf5f900 0, #4f877c9c 100%);
 }
 
 
@@ -122,6 +136,7 @@ body{
     text-align: center;
     font-weight: 500;
     border: none;
+    /* background-image: linear-gradient(316deg, #e2d4e7 100%, #35e4ffbd 100%); */
 }
 
 .blur{
@@ -137,9 +152,10 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 2px solid black;
+    border: 2px solid rgb(253, 162, 253);
     padding-bottom: 20px;
     background-color: white;
+    border-radius: 10px;
 }
 
 form{
@@ -147,6 +163,7 @@ form{
     flex-wrap: wrap;
     margin: 0 0 0 40px;
 }
+
 
 form > div{
     margin: 20px 200px 2px 0px ;
@@ -244,6 +261,160 @@ form > p{
     color: red;
     font-size: 14px;
     display: none;
+    padding-left: 4px;
 }
 
 /*/Form Styles*/
+
+
+/* CSS */
+.add-button {
+  align-items: center;
+  appearance: none;
+  background-clip: padding-box;
+  background-color: initial;
+  background-image: none;
+  border-style: none;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  flex-direction: row;
+  flex-shrink: 0;
+  font-family: Eina01,sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  justify-content: center;
+  line-height: 24px;
+  margin: 0;
+  min-height: 64px;
+  outline: none;
+  overflow: visible;
+  padding: 19px 26px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  width: auto;
+  word-break: keep-all;
+  z-index: 0;
+}
+
+
+.add-button:before,
+.add-button:after {
+  border-radius: 80px;
+}
+
+.add-button:before {
+  background-image: linear-gradient(92.83deg, #3eff0e 0, #04ff00 100%);
+  content: "";
+  display: block;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -2;
+}
+
+.add-button:after {
+  background-color: initial;
+  background-image: linear-gradient(#000000 0, #4f8f8f 100%);
+  bottom: 4px;
+  content: "";
+  display: block;
+  left: 4px;
+  overflow: hidden;
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  transition: all 100ms ease-out;
+  z-index: -1;
+}
+
+.add-button:hover:not(:disabled):before {
+  background: linear-gradient(92.83deg, rgb(148, 224, 133) 0%, rgb(100, 209, 78) 100%);
+}
+
+.add-button:hover:not(:disabled):after {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  transition-timing-function: ease-in;
+  opacity: 0;
+}
+
+.add-buttonactive:not(:disabled) {
+  color: #ccc;
+}
+
+.add-button:active:not(:disabled):before {
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2)), linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+}
+
+.add-button:active:not(:disabled):after {
+  background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
+  bottom: 4px;
+  left: 4px;
+  right: 4px;
+  top: 4px;
+}
+
+.add-button:disabled {
+  cursor: default;
+  opacity: .24;
+}
+
+
+
+.read-status {
+    font-family: inherit;
+    font-weight: 500;
+    padding: 0.7em 1.4em 0.7em 1.1em;
+    color: white;
+    background: #ad5389;
+    background: linear-gradient(0deg, rgba(20,167,62,1) 0%, rgba(102,247,113,1) 100%);
+    border: none;
+    box-shadow: 0 0.7em 1.5em -0.5em #14a73e98;
+    letter-spacing: 0.05em;
+    border-radius: 20em;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+
+
+.read-status:hover {
+  box-shadow: 0 0.5em 1.5em -0.5em #14a73e98;
+}
+
+.read-status:active {
+  box-shadow: 0 0.3em 1em -0.5em #14a73e98;
+}
+
+.unread-status {
+    font-family: inherit;
+    font-weight: 500;
+    padding: 0.7em 1.4em 0.7em 1.1em;
+    color: white;
+    background: #ad5389;
+    background: linear-gradient(0deg, rgb(127 174 197) 0%, rgb(147 165 207) 100%);
+    border: none;
+    box-shadow: 0 0.7em 1.5em -0.5em #14a73e98;
+    letter-spacing: 0.05em;
+    border-radius: 20em;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}

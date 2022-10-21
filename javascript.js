@@ -13,7 +13,10 @@ const bookStatus = document.querySelector('#status');
 const submitButton = document.getElementById("add-book");
 const container = document.getElementsByClassName("page-container")[0];
 const form = document.getElementById('form');
+const checkboxDemo = document.getElementById("checkbox");
+const formContainer = document.getElementById("form-container");
 let closeCard = document.getElementsByClassName("close-card");
+let readBtn = document.getElementsByClassName("read-button")[0];
 let dateMonth ="";
 let myLibrary = [];
 
@@ -26,12 +29,6 @@ function Book(name, author, pages, language, pubDate, status) {
         this.status = status
 }
 
-// function createNewBook() {
-//     let book = new Book(bookName.value, author.value, pages.value, 
-//                         language.value, date.value, bookStatus.value);
-//     myLibrary.push(book);
-//     console.log(myLibrary);
-// }
 
 function addBookToLibrary(){
     let book = new Book(bookName.value, author.value, pages.value, 
@@ -125,27 +122,87 @@ function addBookToLibrary(){
 
 
         let p6 = document.createElement('p');
-        var checkbox = document.createElement('input');
-        checkbox.type = "checkbox";
+        var checkbox = document.createElement('button');
+        checkbox.type = "button";
         checkbox.name = "read";
+        checkbox.innerHTML = "Mark as read"
         checkbox.value = bookStatus.value;
-        if(bookStatus.value == "read"){
-            checkbox.click();
-        }
-        checkbox.id = "read";
+        checkbox.classList.add("read-button");
             var label = document.createElement('label');
             label.htmlFor = "read";
-            label.appendChild(document.createTextNode('Mark as read: '));
-        p6.appendChild(label);
         p6.appendChild(checkbox);
         bookOne.appendChild(p6);
+        if(bookStatus.value == "read"){
+            checkbox.parentElement.parentElement.classList.add("books-read");
+            checkbox.innerHTML = "Mark as unread";
+            checkbox.classList.add("read-status");
+            checkbox.classList.remove("unread-status");
+        }
+        else{
+            checkbox.parentElement.parentElement.classList.add("books-unread");
+            checkbox.innerHTML = "Mark as read";
+            checkbox.classList.add("unread-status");
+            checkbox.classList.remove("read-status");
+
+
+        }
 
         // let p7 = document.createElement("input");
         // p7.setAttribute("label")
-
-
-    //   }
+        console.log(checkbox.value);
+        
+    //   }s
 }
+readBtn.onclick = function(){
+    console.log("do be dooo")
+    if(this.parentElement.parentElement.classList.contains("books-read")){
+        this.parentElement.parentElement.classList.add("books-unread");
+        this.parentElement.parentElement.classList.remove("books-read");
+        this.innerHTML = "Mark as read";
+        this.classList.add("unread-status");
+        this.classList.remove("read-status");
+
+    }
+    else{
+        this.parentElement.parentElement.classList.add("books-read");
+        this.parentElement.parentElement.classList.remove("books-unread");
+        this.innerHTML = "Mark as unread";
+        this.classList.add("read-status");
+        this.classList.remove("unread-status");
+
+    }
+
+}
+
+function checkStatus(){
+    console.log("dfdfkjf")
+    for(let j= 0; j < readBtn.length; j++){
+        readBtn[j].onclick = function(){
+            console.log("do be dooo")
+            if(this.parentElement.parentElement.classList.contains("books-read")){
+                this.parentElement.parentElement.classList.add("books-unread");
+                this.parentElement.parentElement.classList.remove("books-read");
+                this.innerHTML = "Mark as read";
+                this.classList.add("unread-status");
+                this.classList.remove("read-status");
+
+        
+            }
+            else{
+                this.parentElement.parentElement.classList.add("books-read");
+                this.parentElement.parentElement.classList.remove("books-unread");
+                this.innerHTML = "Mark as unread";
+                this.classList.add("read-status");
+                this.classList.remove("unread-status");
+
+        
+            }
+        
+        }
+}
+    }
+
+
 
 console.log(closeCard);
 
@@ -161,16 +218,6 @@ function closeCards(){
     }}
     closeCards();
 
-    // closeCard[0].onclick = function(){
-    //     console.log("happy")
-    //     closeCard[0].parentElement.parentElement.remove();
-    // }
-
-
-// function newBook(){
-// let book = new Book('bookName.value', 'author.value', 'pages.value', 
-//                         'language.value', 'date.value', 'bookStatus.value');
-// }
 
 /*Form Code*/
 closeButton.onclick = function(){
@@ -187,10 +234,13 @@ form.addEventListener('submit', e => {
     addBookToLibrary();
     dateMonth ="";
     closeCard = document.getElementsByClassName("close-card");
+    readBtn = document.getElementsByClassName("read-button");
+
     console.log(closeCard);
     container.classList.remove("blur");
     formPopup.classList.add("hide-popup");
     closeCards();
+    checkStatus();
     form.reset();
 
     }
@@ -204,12 +254,4 @@ addBook.onclick = function(){
     container.classList.add("blur");
     formPopup.classList.remove("hide-popup");
     closeCards();
-    // const book1 = new Book('steve', 'X');
-    // bookOne.setAttribute("div")
-    // console.log(book1)
-    // console.log(bodyBooks)
-    // bodyBooks.appendChild(bookOne);
 }
-
-/*Close button
-trying to assign on click to all the buttons that may or may not exist*/
