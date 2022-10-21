@@ -13,7 +13,8 @@ const bookStatus = document.querySelector('#status');
 const submitButton = document.getElementById("add-book");
 const container = document.getElementsByClassName("page-container")[0];
 const form = document.getElementById('form');
-const closeCard = document.getElementsByClassName("close-card");
+let closeCard = document.getElementsByClassName("close-card");
+let dateMonth ="";
 let myLibrary = [];
 
 function Book(name, author, pages, language, pubDate, status) {
@@ -42,6 +43,7 @@ function addBookToLibrary(){
 
         const p0 = document.createElement('p');
         const cross = document.createElement("button");
+        cross.setAttribute("class", "close-card")
         const iconSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         const iconPath = document.createElementNS(
           'http://www.w3.org/2000/svg',
@@ -79,36 +81,45 @@ function addBookToLibrary(){
         let p5 = document.createElement('p');
         let dateDemoValue = date.value;
         let dateValue = dateDemoValue.split("-");
-        let dateMonth = ""
-         for (let i = 0; i < dateValue[1]; i++){
-            switch(i){
-                case 1:
+
+            switch(dateValue[1]){
+                case '01':
                     dateMonth = 'Jan';
-                case 2:
+                    break;
+                case '02':
                     dateMonth = 'Feb';
-                case 3:
+                    break;
+                case '03':
                     dateMonth = 'March';
-                case 4:
+                    break;
+                case '04':
                     dateMonth = 'April';
-                case 5:
+                    break;
+                case '05':
                     dateMonth = 'May';
-                case 6:
+                    break;
+                case '06':
                     dateMonth = 'June';
-                case 7:
+                    break;
+                case '07':
                     dateMonth = 'July';
-                case 8:
+                    break;
+                case '08':
                     dateMonth = 'August';
-                case 9:
+                    break;
+                case '09':
                     dateMonth = 'Sep';
-                case 10:
+                    break;
+                case '10':
                     dateMonth = 'Oct';
-                case 11:
+                    break;
+                case '11':
                     dateMonth = 'Nov';
-                case 12:
+                    break;
+                case '12':
                     dateMonth = 'Dec';
+                    break;
             }
-         }
-        console.log(dateValue)
         p5.innerText = "Published: " + dateMonth + " " + dateValue[2] + " " + dateValue[0];
         bookOne.appendChild(p5);
 
@@ -129,8 +140,6 @@ function addBookToLibrary(){
         p6.appendChild(checkbox);
         bookOne.appendChild(p6);
 
-        console.log(bookStatus.value)
-
         // let p7 = document.createElement("input");
         // p7.setAttribute("label")
 
@@ -140,16 +149,22 @@ function addBookToLibrary(){
 
 console.log(closeCard);
 
-const closeCards = function(){
-    for(let j= 0; j < closeCard; j++){
-closeCard[j].onclick = function(){
-    console.log("happy")
-    closeCard.parentElement.parentElement.remove();
+function closeCards(){
+    console.log("dfdfkjf")
+    for(let j= 0; j < closeCard.length; j++){
+        console.log("kjfdskjfd")
+    closeCard[j].onclick = function(){
+    console.log("happyclicking");
+    closeCard[j].parentElement.parentElement.remove();
 
 }
     }}
-
     closeCards();
+
+    // closeCard[0].onclick = function(){
+    //     console.log("happy")
+    //     closeCard[0].parentElement.parentElement.remove();
+    // }
 
 
 // function newBook(){
@@ -170,9 +185,14 @@ form.addEventListener('submit', e => {
     }
     else{
     addBookToLibrary();
+    dateMonth ="";
+    closeCard = document.getElementsByClassName("close-card");
+    console.log(closeCard);
     container.classList.remove("blur");
     formPopup.classList.add("hide-popup");
+    closeCards();
     form.reset();
+
     }
 })
 
