@@ -1,5 +1,4 @@
 const addBook = document.getElementsByClassName("button")[0];
-const demoBook = document.getElementById("demoBook")
 const bodyBooks = document.getElementsByClassName("body-books")[0];
 const closeButton = document.getElementById("close-popup");
 const formPopup = document.getElementsByClassName("form-popup")[0];
@@ -16,12 +15,20 @@ const form = document.getElementById('form');
 const checkboxDemo = document.getElementById("checkbox");
 const formContainer = document.getElementById("form-container");
 let closeCard = document.getElementsByClassName("close-card");
-let readBtn = document.getElementsByClassName("read-button")[0];
+let readBtn = document.getElementsByClassName("read-button");
 let dateMonth ="";
-let myLibrary = [];
+let i = 0;
+let myLibrary = [
+];
+
+const bookDemo = new Book("A Game of Thrones",  "George R. R. Martin", "694",
+                             "English", "1996-07-01", "read")
+myLibrary.push(bookDemo);
+readLibrary();
+checkStatus();
 
 function Book(name, author, pages, language, pubDate, status) {
-        this.name = name
+        this.name = name 
         this.author = author
         this.pages = pages
         this.language = language
@@ -33,16 +40,44 @@ function Book(name, author, pages, language, pubDate, status) {
 function addBookToLibrary(){
     let book = new Book(bookName.value, author.value, pages.value, 
         language.value, date.value, bookStatus.value);
-    myLibrary.push(book);
-    // for (let i = 0; i < myLibrary.length; i++) {
-        let bookOne = document.createElement("div");
-        bodyBooks.appendChild(bookOne);
+        myLibrary.push(book);
+}
 
-        const p0 = document.createElement('p');
-        const cross = document.createElement("button");
+function readStatusTogLib(){
+    if(myLibrary[i].status == "read"){
+        // console.log("if statement working");
+        // console.log(this.parentElement.parentElement);
+        this.parentElement.parentElement.classList.add("books-read");
+        this.parentElement.parentElement.classList.remove("books-unread");
+        this.innerHTML = "Mark as read";
+        this.classList.add("read-status");
+        this.classList.remove("unread-status");
+
+    }
+    else{
+        this.parentElement.parentElement.classList.add("books-unread");
+        this.parentElement.parentElement.classList.remove("books-read");
+        this.innerHTML = "Mark as unread";
+        this.classList.add("unread-status");
+        this.classList.remove("read-status");
+
+    }
+}
+
+
+function readLibrary(){
+    // console.log(i);
+    for(; i < myLibrary.length ; i++){
+
+        // console.log(i);
+        let bookOne = document.createElement("div");
+        bookOne.setAttribute("data-index", i)
+        bodyBooks.appendChild(bookOne);
+        let p0 = document.createElement('p');
+        let cross = document.createElement("button");
         cross.setAttribute("class", "close-card")
-        const iconSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        const iconPath = document.createElementNS(
+        let iconSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        let iconPath = document.createElementNS(
           'http://www.w3.org/2000/svg',
           'path'
         );
@@ -60,23 +95,20 @@ function addBookToLibrary(){
         bookOne.appendChild(p0);
 
         let p1 = document.createElement('p');
-        p1.innerText = bookName.value;
         bookOne.appendChild(p1);
 
         let p2 = document.createElement('p');
-        p2.innerText = "By: " + author.value;
         bookOne.appendChild(p2);
 
         let p3 = document.createElement('p');
-        p3.innerText = "Number of pages: " +pages.value;
         bookOne.appendChild(p3);
 
         let p4 = document.createElement('p');
-        p4.innerText = "langauge: " + language.value;
         bookOne.appendChild(p4);
 
         let p5 = document.createElement('p');
-        let dateDemoValue = date.value;
+        console.log(myLibrary[i].pubDate)
+        let dateDemoValue = myLibrary[i].pubDate;
         let dateValue = dateDemoValue.split("-");
 
             switch(dateValue[1]){
@@ -117,7 +149,6 @@ function addBookToLibrary(){
                     dateMonth = 'Dec';
                     break;
             }
-        p5.innerText = "Published: " + dateMonth + " " + dateValue[2] + " " + dateValue[0];
         bookOne.appendChild(p5);
 
 
@@ -126,97 +157,102 @@ function addBookToLibrary(){
         checkbox.type = "button";
         checkbox.name = "read";
         checkbox.innerHTML = "Mark as read"
-        checkbox.value = bookStatus.value;
         checkbox.classList.add("read-button");
             var label = document.createElement('label');
             label.htmlFor = "read";
         p6.appendChild(checkbox);
         bookOne.appendChild(p6);
-        if(bookStatus.value == "read"){
-            checkbox.parentElement.parentElement.classList.add("books-read");
-            checkbox.innerHTML = "Mark as unread";
-            checkbox.classList.add("read-status");
-            checkbox.classList.remove("unread-status");
-        }
-        else{
-            checkbox.parentElement.parentElement.classList.add("books-unread");
-            checkbox.innerHTML = "Mark as read";
-            checkbox.classList.add("unread-status");
-            checkbox.classList.remove("read-status");
+        console.log(myLibrary[i].status)
+        let toggleStatus = readStatusTogLib.bind(checkbox);
+        toggleStatus();
+        p1.innerText = myLibrary[i].name;
+        p2.innerText = "By: " + myLibrary[i].author;
+        p3.innerText = "Number of pages: " +myLibrary[i].pages;
+        p4.innerText = "langauge: " + myLibrary[i].language;
+        p5.innerText = "Published: " + dateMonth + " " + dateValue[2] + " " + dateValue[0];
+        checkbox.value = myLibrary[i].status;
+        dateMonth = "";
 
-
-        }
-
-        // let p7 = document.createElement("input");
-        // p7.setAttribute("label")
-        console.log(checkbox.value);
-        
-    //   }s
-}
-readBtn.onclick = function(){
-    console.log("do be dooo")
-    if(this.parentElement.parentElement.classList.contains("books-read")){
-        this.parentElement.parentElement.classList.add("books-unread");
-        this.parentElement.parentElement.classList.remove("books-read");
-        this.innerHTML = "Mark as read";
-        this.classList.add("unread-status");
-        this.classList.remove("read-status");
 
     }
-    else{
-        this.parentElement.parentElement.classList.add("books-read");
-        this.parentElement.parentElement.classList.remove("books-unread");
-        this.innerHTML = "Mark as unread";
-        this.classList.add("read-status");
-        this.classList.remove("unread-status");
-
-    }
-
 }
 
-function checkStatus(){
-    console.log("dfdfkjf")
-    for(let j= 0; j < readBtn.length; j++){
-        readBtn[j].onclick = function(){
-            console.log("do be dooo")
-            if(this.parentElement.parentElement.classList.contains("books-read")){
-                this.parentElement.parentElement.classList.add("books-unread");
-                this.parentElement.parentElement.classList.remove("books-read");
+
+// function readStatusTog(){
+//     console.log("outer function working")
+//     if(this.parentElement.parentElement.classList.contains("books-unread")){
+//         // console.log("if statement working");
+//         // console.log(this.parentElement.parentElement);
+//         this.parentElement.parentElement.classList.add("books-read");
+//         this.parentElement.parentElement.classList.remove("books-unread");
+//         this.innerHTML = "Mark as read";
+//         this.classList.add("read-status");
+//         this.classList.remove("unread-status");
+
+//     }
+//     else{
+//         this.parentElement.parentElement.classList.add("books-unread");
+//         this.parentElement.parentElement.classList.remove("books-read");
+//         this.innerHTML = "Mark as unread";
+//         this.classList.add("unread-status");
+//         this.classList.remove("read-status");
+
+//     }
+// }
+
+readBtn[0].__proto__.removeDiv = function(){
+        this.onclick = function(){
+            if(this.parentElement.parentElement.classList.contains("books-unread")){
+                // console.log("if statement working");
+                // console.log(this.parentElement.parentElement);
+                this.parentElement.parentElement.classList.add("books-read");
+                this.parentElement.parentElement.classList.remove("books-unread");
                 this.innerHTML = "Mark as read";
-                this.classList.add("unread-status");
-                this.classList.remove("read-status");
-
+                this.classList.add("read-status");
+                this.classList.remove("unread-status");
         
             }
             else{
-                this.parentElement.parentElement.classList.add("books-read");
-                this.parentElement.parentElement.classList.remove("books-unread");
+                this.parentElement.parentElement.classList.add("books-unread");
+                this.parentElement.parentElement.classList.remove("books-read");
                 this.innerHTML = "Mark as unread";
-                this.classList.add("read-status");
-                this.classList.remove("unread-status");
-
+                this.classList.add("unread-status");
+                this.classList.remove("read-status");
         
             }
-        
+            
+        }
+
+}
+//  readBtn[0].removeDiv();
+
+
+
+
+
+
+function checkStatus(){
+    for(let j= 0; j < readBtn.length; j++){
+        // console.log(j + " this is outside the for j loop")
+            // console.log(j)
+            // console.log(readBtn[j])
+            readBtn[0].removeDiv();
         }
 }
-    }
 
 
-
-console.log(closeCard);
 
 function closeCards(){
-    console.log("dfdfkjf")
     for(let j= 0; j < closeCard.length; j++){
-        console.log("kjfdskjfd")
     closeCard[j].onclick = function(){
-    console.log("happyclicking");
-    closeCard[j].parentElement.parentElement.remove();
-
+    this.parentElement.parentElement.remove();
+    let x = this.parentElement.parentElement.getAttribute("data-index");
+    myLibrary.splice(x, 1);
+    checkStatus();
+    if(i >= 1)  {i--};
 }
     }}
-    closeCards();
+closeCards();
 
 
 /*Form Code*/
@@ -232,16 +268,21 @@ form.addEventListener('submit', e => {
     }
     else{
     addBookToLibrary();
+    // console.log(myLibrary.length)
+    readLibrary();
     dateMonth ="";
+    errorMessage.style.display = "none"
+    
     closeCard = document.getElementsByClassName("close-card");
     readBtn = document.getElementsByClassName("read-button");
 
-    console.log(closeCard);
     container.classList.remove("blur");
     formPopup.classList.add("hide-popup");
     closeCards();
     checkStatus();
     form.reset();
+    // readBtn[1].removeDiv();
+
 
     }
 })

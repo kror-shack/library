@@ -17,6 +17,9 @@ body{
 
 .header{
     height: 10vh;
+    min-width: 1820px;
+    min-height: 80px;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,6 +50,9 @@ body{
 .body{
     display: flex;
     height: 84vh;
+    min-width: 1820px;
+    min-height: 80px;
+    box-sizing: border-box;
     /* background-image: linear-gradient(316deg, #e2d4e7 0, #87b9c1bd 100%); */
 }
 
@@ -100,7 +106,8 @@ body{
     border: none;
     background: none;
     margin: 0;
-    padding: 0;
+    box-sizing: border-box;
+    padding: 8px 0 0 0;
 }
 
 .books-container > button{
@@ -156,6 +163,10 @@ body{
     padding-bottom: 20px;
     background-color: white;
     border-radius: 10px;
+}
+
+.show-error{
+    display: block;
 }
 
 form{
