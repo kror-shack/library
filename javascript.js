@@ -21,27 +21,25 @@ let i = 0;
 let myLibrary = [
 ];
 
-const bookDemo = new Book("A Game of Thrones",  "George R. R. Martin", "694",
-                             "English", "1996-07-01", "read")
-myLibrary.push(bookDemo);
-readLibrary();
-checkStatus();
 
-function Book(name, author, pages, language, pubDate, status) {
-        this.name = name 
-        this.author = author
-        this.pages = pages
-        this.language = language
-        this.pubDate = pubDate
-        this.status = status
+class Book{
+    constructor(name, author, pages, language, pubDate, status) {
+            this.name = name 
+            this.author = author
+            this.pages = pages
+            this.language = language
+            this.pubDate = pubDate
+            this.status = status
+    }
+
 }
-
 
 function addBookToLibrary(){
     let book = new Book(bookName.value, author.value, pages.value, 
         language.value, date.value, bookStatus.value);
         myLibrary.push(book);
 }
+
 
 function readStatusTogLib(){
     if(myLibrary[i].status == "read"){
@@ -63,6 +61,11 @@ function readStatusTogLib(){
 
     }
 }
+
+const bookDemo = new Book("A Game of Thrones",  "George R. R. Martin", "694",
+                             "English", "1996-07-01", "read")
+myLibrary.push(bookDemo);
+readLibrary();
 
 
 function readLibrary(){
@@ -226,6 +229,8 @@ readBtn[0].__proto__.removeDiv = function(){
 }
 //  readBtn[0].removeDiv();
 
+checkStatus();
+
 
 
 
@@ -233,10 +238,11 @@ readBtn[0].__proto__.removeDiv = function(){
 
 function checkStatus(){
     for(let j= 0; j < readBtn.length; j++){
-        // console.log(j + " this is outside the for j loop")
+        console.log(j + " this is outside the for j loop")
             // console.log(j)
             // console.log(readBtn[j])
-            readBtn[0].removeDiv();
+
+            readBtn[j].removeDiv();
         }
 }
 
